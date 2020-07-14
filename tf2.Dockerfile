@@ -4,21 +4,14 @@ FROM nvcr.io/nvidia/l4t-base:r32.3.1
 #
 RUN apt-get update \
     && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install pkg-config python3-pip \
-    && apt-get -y install libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip libjpeg8-dev liblapack-dev libblas-dev gfortran \
+    && apt-get -y install --no-install-recommends pkg-config python3-pip python3-dev \
+    && apt-get -y install --no-install-recommends libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip libjpeg8-dev liblapack-dev libblas-dev gfortran \
+    && python3 -m pip --no-cache-dir install --upgrade pip setuptools wheel \
     #
     # Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
-
-# https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform/index.html
-#
-RUN python3 -m pip install --upgrade pip setuptools wheel six \
-    && pip3 install numpy h5py pybind11 \
-    #
-    # Clean up
-    && rm -rf ~/.cache
 
 # protobuf cpp_implementation
 #
