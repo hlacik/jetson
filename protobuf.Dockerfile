@@ -44,13 +44,3 @@ WORKDIR /usr/local/src/protobuf/python
 # Make protobuf-python
 RUN python3 setup.py build --cpp_implementation \
     && python3 setup.py bdist_wheel -d ./ --cpp_implementation
-
-FROM 156837977579.dkr.ecr.eu-central-1.amazonaws.com/lprnet:tf2-nv20.3
-
-#protobuf
-COPY --from=builder /opt/protobuf/protobuf_*_arm64.deb /tmp
-COPY --from=builder /opt/protobuf/python/protobuf-*-linux_aarch64.whl /tmp
-
-RUN dpkg -i /tmp/protobuf_*_arm64.deb \
-    && pip3 --no-cache-dir install /opt/protobuf-*-linux_aarch64.whl \
-    && rm -rf /tmp
