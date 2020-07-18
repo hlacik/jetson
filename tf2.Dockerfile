@@ -25,8 +25,8 @@ RUN python3 -m pip install --upgrade pip setuptools wheel \
 ARG PROTOBUF_DEB=https://github.com/hlacik/jetson/releases/download/protobuf/protobuf_3.12.3-1_arm64.deb
 ARG PROTOBUF_PYTHON=https://github.com/hlacik/jetson/releases/download/protobuf/protobuf-3.12.3-cp36-cp36m-linux_aarch64.whl
 
-RUN wget -q  ${PROTOBUF_DEB} -P /tmp \
-    && wget ${PROTOBUF_PYTHON} -q  -P /tmp \
+RUN wget ${PROTOBUF_DEB} -q -P /tmp \
+    && wget ${PROTOBUF_PYTHON} -q -P /tmp \
     && dpkg -i /tmp/protobuf_*_arm64.deb \
     && pip3 --no-cache-dir install /tmp/protobuf-*-linux_aarch64.whl \
     && rm /tmp/protobuf_*_arm64.deb /tmp/protobuf-*-linux_aarch64.whl
