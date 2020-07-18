@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/l4t-base:r32.4.3
+FROM nvcr.io/nvidia/l4t-base:r32.3.1
 
 # https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform/index.html
 #
@@ -31,11 +31,11 @@ RUN wget -q  ${PROTOBUF_DEB} -P /tmp \
     && pip3 --no-cache-dir install /tmp/protobuf-*-linux_aarch64.whl \
     && rm /tmp/protobuf_*_arm64.deb /tmp/protobuf-*-linux_aarch64.whl
 
-# tensorflow-2.2.0+nv20.6-cp36-cp36m-linux_aarch64.whl
+# tensorflow-2.1.0+nv20.3-cp36-cp36m-linux_aarch64.whl
 #
-ARG JP_VERSION=44
-ARG TF_VERSION=2.2.0
-ARG NV_VERSION=20.6
+ARG JP_VERSION=43
+ARG TF_VERSION=2.1.0
+ARG NV_VERSION=20.3
 
 RUN pip3 install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v$JP_VERSION tensorflow==$TF_VERSION+nv$NV_VERSION \
     #
