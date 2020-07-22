@@ -11,6 +11,7 @@
 ## cmake
 
 export ARCH_BIN=5.3
+
 cmake \
     -D WITH_CUDA=ON \
     -D CUDA_ARCH_BIN=${ARCH_BIN} \
